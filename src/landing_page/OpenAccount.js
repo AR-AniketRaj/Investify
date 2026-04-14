@@ -9,12 +9,13 @@ function OpenAccount() {
           Modern platforms and apps, ₹0 investments, and flat ₹20 intraday and
           F&O traders.
         </p>
-        <button
-          className=" btn btn-primary fs-5 "
-          style={{ width: "200px" }}
+       <div className="d-flex justify-content-center">
+         <button
+          className=" btn btn-primary fs-5 px-5"
         >
           Sign up now
         </button>
+       </div>
       </div>
     </div>
   );
