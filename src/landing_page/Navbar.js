@@ -1,18 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg border-bottom bg-white">
       <div className="container">
         {/* LOGO */}
-        <a className="navbar-brand d-flex align-items-center" href="#">
+        <Link className="navbar-brand d-flex align-items-center" href="#">
           <img
             src="media/images/logo.svg"
             style={{ width: "150px" }}
             alt="logo"
           />
-          
-        </a>
+        </Link>
 
         {/* TOGGLER */}
         <button
@@ -28,33 +28,33 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              <Link className="nav-link active" to={"/signup"}>
                 Signup
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to={"/about"}>
                 About
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to={"/products"}>
                 Products
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to={"/pricing"}>
                 Pricing
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to={"/support"}>
                 Support
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
