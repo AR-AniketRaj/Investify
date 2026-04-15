@@ -18,3 +18,14 @@ code {
   color: #6c757d;
   margin-bottom: 5px;
 }
+
+/* About page */
+
+.abouthero {
+  font-size: 22px;
+}
+
+.aboutteam {
+  font-size: 1.25rem;
+  
+}
