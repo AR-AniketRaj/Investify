@@ -27,5 +27,12 @@ code {
 
 .aboutteam {
   font-size: 1.25rem;
-  
+}
+
+/* Product page */
+
+.one-line {
+  white-space: nowrap;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
