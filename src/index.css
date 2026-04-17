@@ -37,3 +37,15 @@ code {
   margin-bottom: 1rem;
 }
 
+.universe img {
+  width: 250px;
+}
+.universe {
+  padding: 16px;
+  color: #6c757d;
+}
+.universe p{
+  margin-top: 20px;
+  text-align: center;
+}
+
