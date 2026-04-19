@@ -62,9 +62,31 @@ code {
   line-height: 1.8rem;
   font-size: 14px;
 }
-.Acc-Opening h3{
+.Acc-Opening h3 {
   white-space: nowrap;
 }
 .Acc-Opening {
   margin-bottom: 20px;
+}
+
+#supportHero {
+  background-color: rgb(56, 126, 209);
+  color: white;
+}
+
+#supportWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px;
+  
+}
+#supportHero a {
+  color: white;
+  display: inline;
+}
+#supportHero input{
+  padding: 15px 40px;
+  width: 85%;
+  border: none;
+  border-radius: 10px;
 }
