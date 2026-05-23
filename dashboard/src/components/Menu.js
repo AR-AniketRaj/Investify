@@ -39,7 +39,7 @@ const Menu = () => {
               to="/orders"
               onClick={() => handleMenuClick(1)}
             >
-              <p className={selectedMenu === 1 ? activeMenuClass : menuClass}>
+              <p className={selectedMenu === 1 ? activeMenuClass :menuClass}>
                 Orders
               </p>
             </Link>
