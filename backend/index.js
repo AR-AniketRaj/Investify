@@ -7,11 +7,13 @@ const cors = require("cors");
 
 const { HoldingModel } = require("./model/HoldingModel");
 const { PositionsModel } = require("./model/PositionsModel");
+const { OrdersModel } = require("./model/OrdersModel");
 
 const PORT = process.env.PORT || 3002;
 const url = process.env.MONGO_URL;
 
 const app = express();
+app.use(express.json());
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -203,6 +205,29 @@ app.get("/allHoldings", async (req, res) => {
 app.get("/allPositions", async (req, res) => {
   let allPositions = await PositionsModel.find({});
   res.json(allPositions);
+});
+
+app.post("/newOrder", async (req, res) => {
+  try {
+    console.log("BODY:", req.body);
+
+    let newOrder = new OrdersModel({
+      name: req.body.name,
+      qty: req.body.qty,
+      price: req.body.price,
+      mode: req.body.mode,
+    });
+
+    console.log("NEW ORDER:", newOrder);
+
+    await newOrder.save();
+
+    res.send("order saved");
+  } catch (err) {
+    console.log("ERROR:", err);
+
+    res.status(500).send("Server Error");
+  }
 });
 
 app.listen(PORT, () => {
