@@ -5,10 +5,10 @@ import TopBar from "./TopBar";
 
 const Home = () => {
   return (
-    <>
+    <div className="main-wrapper">
       <TopBar />
       <Dashboard />
-    </>
+    </div>
   );
 };
 
