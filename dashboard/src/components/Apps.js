@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Login, Signup } from "../pages";
 import Home from "./Home";
 // import Dashboard from "./Dashboard";
+// import StockCard from "./components/StockCard";
 
 const Apps = () => {
   return (
