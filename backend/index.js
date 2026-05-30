@@ -7,6 +7,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 
+const stockRoute = require("./routes/stockRoute");
+
 const { HoldingModel } = require("./model/HoldingModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
@@ -26,6 +28,8 @@ app.use(
 );
 
 app.use(cookieParser());
+
+app.use("/api/stocks", stockRoute);
 
 mongoose
   .connect(url)
