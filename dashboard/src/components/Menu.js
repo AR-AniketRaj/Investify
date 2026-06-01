@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import axios from "axios";
+
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
@@ -14,12 +16,28 @@ const Menu = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
+  const handleLogout = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:4000/logout",
+        {},
+        { withCredentials: true },
+      );
+
+      if (data.success) {
+        window.location.href = "http://localhost:3000/login";
+      }
+    } catch (error) {
+      console.log("Logout Error", error);
+    }
+  };
+
   const menuClass = "menu";
   const activeMenuClass = "menu selected";
 
   return (
     <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} />
+      <img src="logo.png" style={{ width: "50px" }} alt="logo" />
       <div className="menus">
         <ul>
           <li>
@@ -39,7 +57,7 @@ const Menu = () => {
               to="/orders"
               onClick={() => handleMenuClick(1)}
             >
-              <p className={selectedMenu === 1 ? activeMenuClass :menuClass}>
+              <p className={selectedMenu === 1 ? activeMenuClass : menuClass}>
                 Orders
               </p>
             </Link>
@@ -87,6 +105,9 @@ const Menu = () => {
                 Apps
               </p>
             </Link>
+          </li>
+          <li onClick={handleLogout}>
+            <p className={menuClass}>Logout</p>
           </li>
         </ul>
         <hr />
