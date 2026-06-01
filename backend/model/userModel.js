@@ -15,13 +15,28 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Your password is required"],
   },
+  otp: {
+    type: String,
+    default: null,
+  },
+  otpExpiry: {
+    type: Date,
+    default: null,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: new Date(),
   },
 });
 
-userSchema.pre("save", async function () {
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return;
+  }
   this.password = await bcrypt.hash(this.password, 12);
 });
 
