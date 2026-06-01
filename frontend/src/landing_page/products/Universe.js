@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Universe() {
   return (
@@ -13,7 +14,7 @@ function Universe() {
             &nbsp;blog.
           </p>
           <h2 style={{ marginBottom: "20px" }}>The Zerodha Universe</h2>
-          <p className="text-muted" style={{marginBottom: "40px"}}>
+          <p className="text-muted" style={{ marginBottom: "40px" }}>
             Extend your trading and investment experience even further with our
             partner platforms
           </p>
@@ -60,7 +61,9 @@ function Universe() {
           </p>
         </div>
         <div className="d-flex justify-content-center">
-          <button className=" btn btn-primary fs-5 px-5">Sign up now</button>
+          <Link to="/signup">
+            <button className=" btn btn-primary fs-5 px-5">Sign up now</button>
+          </Link>
         </div>
       </div>
     </div>

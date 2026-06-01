@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg border-bottom bg-white">
       <div className="container">
         {/* LOGO */}
-        <Link className="navbar-brand d-flex align-items-center" href="#">
+        <Link className="navbar-brand d-flex align-items-center" to="/">
           <img
             src="media/images/logo.svg"
             style={{ width: "150px" }}
@@ -30,6 +31,12 @@ function Navbar() {
             <li className="nav-item">
               <Link className="nav-link active" to={"/signup"}>
                 Signup
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link active" to={"/login"}>
+                Login
               </Link>
             </li>
 
