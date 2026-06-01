@@ -21,7 +21,11 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://investify-backend-cvdo.onrender.com",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
@@ -205,6 +209,10 @@ mongoose
 
 //   res.send("Positions added successfully!");
 // });
+
+app.get("/", (req, res) => {
+  res.send("Investify Backend Running! 🚀");
+});
 
 app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingModel.find({});
