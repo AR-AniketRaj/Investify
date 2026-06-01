@@ -35,17 +35,25 @@ const Signup = () => {
         },
         { withCredentials: true },
       );
+
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
+
         setTimeout(() => {
-          window.location.href = "http://localhost:3001";
+          navigate("/verify-otp", {
+            state: {
+              email,
+            },
+          });
         }, 1000);
       } else {
         handleError(message);
       }
     } catch (error) {
       console.log(error);
+
+      handleError("Something went wrong");
     }
     setInputValue({
       ...inputValue,

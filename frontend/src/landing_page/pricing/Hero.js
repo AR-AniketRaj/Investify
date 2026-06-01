@@ -8,8 +8,8 @@ function Hero() {
           <h1 className="fs-3 mt-5 py-3">Pricing</h1>
           <h3 className="text-muted border-bottom pb-5 mb-5 fs-5">
             Free equity investments and flat
-            <i class="fa-solid fa-indian-rupee-sign fs-6"></i>20 traday and F&O
-            trades
+            <i className="fa-solid fa-indian-rupee-sign fs-6"></i>20 traday and
+            F&O trades
           </h3>
         </div>
         <div className="row">

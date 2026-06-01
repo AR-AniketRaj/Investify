@@ -9,7 +9,7 @@ function Stats() {
           <h4>Customer-first always</h4>
           <p className="text-muted">
             That's why 1.3+ crore customers trust Investify with{" "}
-            <i class="fa-solid fa-indian-rupee-sign fs-6"></i>3.5 lakh crores
+            <i className="fa-solid fa-indian-rupee-sign fs-6"></i>3.5 lakh crores
             worth of equity investments.
           </p>
           <h4>No spam or gimmicks</h4>
@@ -34,7 +34,7 @@ function Stats() {
           <div className="">
             <a href="" className="me-5" style={{ textDecoration: "none" }}>
               Explore our products{" "}
-              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
             </a>
             <a href="" style={{ textDecoration: "none" }}>
               Try Kite demo

@@ -9,7 +9,7 @@ function CreateTicket() {
         </h1>
         <div className="col-6 col-md-4 Acc-Opening">
           <h3 className="fs-4 mb-4">
-            <i class="fa-solid fa-circle-plus fa-sm"></i> Account Opening
+            <i className="fa-solid fa-circle-plus fa-sm"></i> Account Opening
           </h3>
           <a href="">Online Account Opening</a>
           <br />
@@ -28,7 +28,7 @@ function CreateTicket() {
         </div>
         <div className="col-6 col-md-4 Acc-Opening mb-5">
           <h3 className="fs-4 mb-4">
-            <i class="fa-solid fa-user fa-sm"></i> Your Zerodha Account
+            <i className="fa-solid fa-user fa-sm"></i> Your Zerodha Account
           </h3>
           <a href="">Login Credentials</a>
           <br />
@@ -43,7 +43,7 @@ function CreateTicket() {
         </div>
         <div className="col-6 col-md-4 Acc-Opening">
           <h3 className="fs-4 mb-4">
-            <i class="fa-solid fa-chart-column fa-sm"></i> Your Zerodha Account
+            <i className="fa-solid fa-chart-column fa-sm"></i> Your Zerodha Account
           </h3>
           <a href="">Margin/leverage, Product and Order types</a>
           <br />
@@ -66,7 +66,7 @@ function CreateTicket() {
         </div>
         <div className="col-6 col-md-4 Acc-Opening">
           <h3 className="fs-4 mb-4">
-            <i class="fa-solid fa-wallet fa-sm"></i> Funds
+            <i className="fa-solid fa-wallet fa-sm"></i> Funds
           </h3>
           <a href="">Adding Funds</a>
           <br />
@@ -79,7 +79,7 @@ function CreateTicket() {
         </div>
         <div className="col-6 col-md-4 Acc-Opening mb-5">
           <h3 className="fs-4 mb-4">
-            <i class="fa-solid fa-circle-notch fa-sm"></i> Console
+            <i className="fa-solid fa-circle-notch fa-sm"></i> Console
           </h3>
           <a href="">Reports</a>
           <br />
@@ -96,7 +96,7 @@ function CreateTicket() {
         </div>
         <div className="col-6 col-md-4 Acc-Opening">
           <h3 className="fs-4 mb-4">
-            <i class="fa-regular fa-circle fa-sm"></i> Coin
+            <i className="fa-regular fa-circle fa-sm"></i> Coin
           </h3>
           <a href="">Understanding Mutuals Funds</a>
           <br />

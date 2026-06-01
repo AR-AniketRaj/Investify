@@ -10,9 +10,13 @@ function Pricing() {
             We pioneered the concept of discount broking and price transparency
             in India. Flat fees and no hidden charges.
           </p>
-          <a href="" className="d-inline-block mb-5" style={{ textDecoration: "none" }}>
+          <a
+            href=""
+            className="d-inline-block mb-5"
+            style={{ textDecoration: "none" }}
+          >
             See Pricing{" "}
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
         </div>
 
@@ -20,13 +24,13 @@ function Pricing() {
           <div className="row text-center">
             <div className="col-6 border">
               <h1>
-                <i class="fa-solid fa-indian-rupee-sign fs-2"></i>0
+                <i className="fa-solid fa-indian-rupee-sign fs-2"></i>0
               </h1>
               <p>Free equity delivery and direct mutual funds</p>
             </div>
             <div className="col-6 border">
               <h1>
-                <i class="fa-solid fa-indian-rupee-sign fs-2"></i>20
+                <i className="fa-solid fa-indian-rupee-sign fs-2"></i>20
               </h1>
               <p>Intraday and F&O</p>
             </div>

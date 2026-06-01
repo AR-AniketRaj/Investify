@@ -19,7 +19,7 @@ function Education() {
             style={{ textDecoration: "none" }}
             className="d-inline-block mb-4"
           >
-            Versity <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            Versity <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
 
           <p>
