@@ -4,13 +4,30 @@ const bcrypt = require("bcryptjs");
 const transporter = require("../config/mail");
 
 // SIGNUP
+// SIGNUP
 module.exports.Signup = async (req, res) => {
   try {
     const { email, password, username } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    console.log("SIGNUP BODY:", req.body);
+
+    if (!email || !password || !username) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
+    let existingUser = await User.findOne({ email });
+
+    console.log("EXISTING USER:", existingUser);
 
     if (existingUser) {
+      console.log("IS VERIFIED:", existingUser.isVerified);
+    }
+
+    // If verified account already exists
+    if (existingUser && existingUser.isVerified) {
       return res.status(400).json({
         success: false,
         message: "User already exists",
@@ -19,7 +36,7 @@ module.exports.Signup = async (req, res) => {
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    await User.create({
+    const newUser = await User.create({
       email,
       password,
       username,
@@ -28,12 +45,23 @@ module.exports.Signup = async (req, res) => {
       isVerified: false,
     });
 
-    await transporter.sendMail({
-      from: process.env.EMAIL,
-      to: email,
-      subject: "Email Verification OTP",
-      text: `Your OTP is ${otp}`,
-    });
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL,
+        to: email,
+        subject: "Email Verification OTP",
+        text: `Your OTP is ${otp}`,
+      });
+    } catch (mailError) {
+      console.log("MAIL ERROR:", mailError);
+
+      await User.deleteOne({ _id: newUser._id });
+
+      return res.status(500).json({
+        success: false,
+        message: "Failed to send OTP email",
+      });
+    }
 
     return res.status(201).json({
       success: true,
