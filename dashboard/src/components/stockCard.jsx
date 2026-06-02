@@ -7,7 +7,7 @@ function StockCard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/stocks/quote/AAPL")
+      .get("https://investify-backend-cvdo.onrender.com/api/stocks/quote/AAPL")
 
       .then((res) => {
         setStock(res.data);

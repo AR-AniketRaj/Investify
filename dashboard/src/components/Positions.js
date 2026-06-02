@@ -8,7 +8,7 @@ const Positions = () => {
   const [allPositions, setAllPositions] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/allPositions").then((res) => {
+    axios.get("https://investify-backend-cvdo.onrender.com/allPositions").then((res) => {
       setAllPositions(res.data);
     });
   }, []);

@@ -19,7 +19,7 @@ const Menu = () => {
   const handleLogout = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/logout",
+        "https://investify-backend-cvdo.onrender.com/logout",
         {},
         { withCredentials: true },
       );
