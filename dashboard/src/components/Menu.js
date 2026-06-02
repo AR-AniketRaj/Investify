@@ -25,7 +25,7 @@ const Menu = () => {
       );
 
       if (data.success) {
-        window.location.href = "https://investify-frontend.onrender.com/login";
+        window.location.href = "https://investify-frontend.onrender.com";
       }
     } catch (error) {
       console.log("Logout Error", error);
