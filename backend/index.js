@@ -25,6 +25,7 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "https://investify-dashboard.onrender.com",
+      "https://investify-frontend.onrender.com"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
