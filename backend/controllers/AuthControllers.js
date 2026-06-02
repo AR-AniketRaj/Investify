@@ -45,6 +45,7 @@ module.exports.Signup = async (req, res) => {
       otpExpiry: Date.now() + 5 * 60 * 1000,
       isVerified: false,
     });
+    console.log("USER CREATED:", email);
 
     try {
       await transporter.sendMail({
