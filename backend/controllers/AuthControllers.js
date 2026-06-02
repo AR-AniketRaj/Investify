@@ -36,6 +36,7 @@ module.exports.Signup = async (req, res) => {
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
+    console.log("CREATING USER:", email);
     const newUser = await User.create({
       email,
       password,
