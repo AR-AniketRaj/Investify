@@ -68,11 +68,13 @@ module.exports.Signup = async (req, res) => {
       message: "OTP sent successfully",
     });
   } catch (error) {
-    console.log("SIGNUP ERROR:", error);
+    console.error("SIGNUP ERROR FULL:", error);
 
     return res.status(500).json({
       success: false,
       message: error.message,
+      code: error.code,
+      keyValue: error.keyValue,
     });
   }
 };

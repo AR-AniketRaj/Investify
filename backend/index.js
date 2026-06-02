@@ -25,7 +25,7 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "https://investify-dashboard.onrender.com",
-      "https://investify-frontend.onrender.com"
+      "https://investify-frontend.onrender.com",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
@@ -249,6 +249,14 @@ app.post("/newOrder", async (req, res) => {
 });
 
 app.use("/", authRoute);
+
+app.get("/test-user-count", async (req, res) => {
+  const User = require("./model/userModel");
+
+  const count = await User.countDocuments();
+
+  res.json({ count });
+});
 
 app.listen(PORT, () => {
   console.log("App started!");
