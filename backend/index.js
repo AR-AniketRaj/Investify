@@ -24,7 +24,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:3001",
-      "https://investify-backend-cvdo.onrender.com",
+      "https://investify-dashboard.onrender.com/",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
