@@ -27,6 +27,7 @@ const Signup = () => {
     });
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("SIGNUP CLICKED");
     try {
       const { data } = await axios.post(
         "https://investify-backend-cvdo.onrender.com/signup",
