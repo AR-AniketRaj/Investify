@@ -55,7 +55,14 @@ module.exports.Signup = async (req, res) => {
         text: `Your OTP is ${otp}`,
       });
     } catch (mailError) {
-      console.log("MAIL ERROR:", mailError);
+      console.error("MAIL ERROR FULL:", mailError);
+
+      await User.deleteOne({ _id: newUser._id });
+
+      return res.status(500).json({
+        success: false,
+        message: mailError.message,
+      });
 
       await User.deleteOne({ _id: newUser._id });
 
