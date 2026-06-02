@@ -14,7 +14,7 @@ const VerifyOtp = () => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post("http://localhost:4000/verify-otp", {
+      const { data } = await axios.post("https://investify-backend-cvdo.onrender.com/verify-otp", {
         email,
         otp,
       });
