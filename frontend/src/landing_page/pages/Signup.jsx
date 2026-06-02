@@ -53,7 +53,7 @@ const Signup = () => {
     } catch (error) {
       console.log(error);
 
-      handleError("Something went wrong");
+      handleError(error?.response?.data?.message || "Something went wrong");
     }
     setInputValue({
       ...inputValue,
