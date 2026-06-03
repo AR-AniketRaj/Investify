@@ -4,8 +4,7 @@ const bcrypt = require("bcryptjs");
 const transporter = require("../config/mail");
 
 // SIGNUP
-// SIGNUP
-module.exports.Signup = async (req, res) => {
+jsmodule.exports.Signup = async (req, res) => {
   try {
     const { email, password, username } = req.body;
 
@@ -19,14 +18,9 @@ module.exports.Signup = async (req, res) => {
     }
 
     let existingUser = await User.findOne({ email });
-
     console.log("EXISTING USER:", existingUser);
 
-    if (existingUser) {
-      console.log("IS VERIFIED:", existingUser.isVerified);
-    }
-
-    // If verified account already exists
+    // ✅ Verified user already exists
     if (existingUser && existingUser.isVerified) {
       return res.status(400).json({
         success: false,
@@ -35,18 +29,33 @@ module.exports.Signup = async (req, res) => {
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpExpiry = Date.now() + 5 * 60 * 1000;
 
-    console.log("CREATING USER:", email);
-    const newUser = await User.create({
-      email,
-      password,
-      username,
-      otp,
-      otpExpiry: Date.now() + 5 * 60 * 1000,
-      isVerified: false,
-    });
-    console.log("USER CREATED:", email);
+    let userToNotify;
 
+    // ✅ Unverified user exists — update karo, naya mat banao
+    if (existingUser && !existingUser.isVerified) {
+      console.log("UPDATING EXISTING UNVERIFIED USER:", email);
+      existingUser.otp = otp;
+      existingUser.otpExpiry = otpExpiry;
+      existingUser.password = password; // updated password bhi save karo
+      await existingUser.save();
+      userToNotify = existingUser;
+    } else {
+      // ✅ Brand new user
+      console.log("CREATING USER:", email);
+      userToNotify = await User.create({
+        email,
+        password,
+        username,
+        otp,
+        otpExpiry,
+        isVerified: false,
+      });
+      console.log("USER CREATED:", email);
+    }
+
+    // ✅ OTP send karo
     try {
       await transporter.sendMail({
         from: process.env.EMAIL,
@@ -55,17 +64,11 @@ module.exports.Signup = async (req, res) => {
         text: `Your OTP is ${otp}`,
       });
     } catch (mailError) {
-      console.error("MAIL ERROR FULL:", mailError);
-
-      await User.deleteOne({ _id: newUser._id });
-
-      return res.status(500).json({
-        success: false,
-        message: mailError.message,
-      });
-
-      await User.deleteOne({ _id: newUser._id });
-
+      console.error("SMTP ERROR:", mailError);
+      // Sirf naye user ko delete karo, existing ko nahi
+      if (!existingUser) {
+        await User.deleteOne({ _id: userToNotify._id });
+      }
       return res.status(500).json({
         success: false,
         message: "Failed to send OTP email",
@@ -78,7 +81,6 @@ module.exports.Signup = async (req, res) => {
     });
   } catch (error) {
     console.error("SIGNUP ERROR FULL:", error);
-
     return res.status(500).json({
       success: false,
       message: error.message,
@@ -86,116 +88,4 @@ module.exports.Signup = async (req, res) => {
       keyValue: error.keyValue,
     });
   }
-};
-
-// VERIFY OTP
-module.exports.VerifyOtp = async (req, res) => {
-  try {
-    const { email, otp } = req.body;
-
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found",
-      });
-    }
-
-    if (user.otp !== otp) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid OTP",
-      });
-    }
-
-    if (user.otpExpiry < Date.now()) {
-      return res.status(400).json({
-        success: false,
-        message: "OTP expired",
-      });
-    }
-
-    user.isVerified = true;
-    user.otp = null;
-    user.otpExpiry = null;
-
-    await user.save();
-
-    return res.status(200).json({
-      success: true,
-      message: "Email verified successfully",
-    });
-  } catch (error) {
-    console.log("VERIFY OTP ERROR:", error);
-
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
-
-// LOGIN
-module.exports.Login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(400).json({
-        success: false,
-        message: "Incorrect email or password",
-      });
-    }
-
-    if (!user.isVerified) {
-      return res.status(400).json({
-        success: false,
-        message: "Please verify your email first",
-      });
-    }
-
-    const auth = await bcrypt.compare(password, user.password);
-
-    if (!auth) {
-      return res.status(400).json({
-        success: false,
-        message: "Incorrect email or password",
-      });
-    }
-
-    const token = createSecretToken(user._id);
-
-    res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false,
-    });
-
-    return res.status(200).json({
-      success: true,
-      message: "Login successful",
-      user,
-    });
-  } catch (error) {
-    console.log("LOGIN ERROR:", error);
-
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
-
-// LOGOUT
-module.exports.Logout = async (req, res) => {
-  res.cookie("token", "", {
-    expires: new Date(0),
-  });
-
-  return res.status(200).json({
-    success: true,
-    message: "Logged out successfully",
-  });
 };
