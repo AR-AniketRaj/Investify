@@ -65,6 +65,13 @@ module.exports.Signup = async (req, res) => {
       });
     } catch (mailError) {
       console.error("SMTP ERROR:", mailError);
+
+      return res.status(500).json({
+        success: false,
+        message: mailError.message,
+        code: mailError.code,
+      });
+
       // Sirf naye user ko delete karo, existing ko nahi
       if (!existingUser) {
         await User.deleteOne({ _id: userToNotify._id });
