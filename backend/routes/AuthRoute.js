@@ -4,6 +4,13 @@ const {
   Logout,
   VerifyOtp,
 } = require("../controllers/AuthControllers");
+
+console.log({
+  Signup,
+  Login,
+  Logout,
+  VerifyOtp,
+});
 const { userVerification } = require("../Middlewares/authMiddleware");
 const router = require("express").Router();
 
