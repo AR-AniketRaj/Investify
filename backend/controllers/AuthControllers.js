@@ -58,7 +58,8 @@ module.exports.Signup = async (req, res) => {
 
     //  OTP send karo
     try {
-      await resend.emails.send({
+      console.log("USING RESEND");
+      const response = await resend.emails.send({
         from: "onboarding@resend.dev",
         to: email,
         subject: "Email Verification OTP",

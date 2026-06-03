@@ -13,6 +13,8 @@ const { HoldingModel } = require("./model/HoldingModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
 
+const resend = require("./config/resend");
+
 const PORT = process.env.PORT || 4000;
 const url = process.env.MONGO_URL;
 
@@ -256,27 +258,6 @@ app.get("/test-user-count", async (req, res) => {
   const count = await User.countDocuments();
 
   res.json({ count });
-});
-
-const transporter = require("./config/mail");
-
-app.get("/test-mail", async (req, res) => {
-  try {
-    await transporter.sendMail({
-      from: process.env.EMAIL,
-      to: process.env.EMAIL,
-      subject: "Investify Test",
-      text: "Mail is working",
-    });
-
-    res.send("Mail Sent Successfully");
-  } catch (err) {
-    console.error("MAIL TEST ERROR:", err);
-    res.status(500).json({
-      message: err.message,
-      code: err.code,
-    });
-  }
 });
 
 app.listen(PORT, () => {
