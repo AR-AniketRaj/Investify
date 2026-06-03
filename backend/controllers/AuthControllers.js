@@ -65,6 +65,8 @@ module.exports.Signup = async (req, res) => {
         subject: "Email Verification OTP",
         html: `<h2>Your OTP is ${otp}</h2>`,
       });
+
+      console.log("RESEND RESPONSE:", response);
     } catch (mailError) {
       console.error("RESEND ERROR:", mailError);
 
