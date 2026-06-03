@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const transporter = require("../config/mail");
 
 // SIGNUP
-jsmodule.exports.Signup = async (req, res) => {
+module.exports.Signup = async (req, res) => {
   try {
     const { email, password, username } = req.body;
 
